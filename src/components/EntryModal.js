@@ -33,6 +33,7 @@ export default function EntryModal({ entry, type, user }) {
   const [link, setLink] = useState(entry.link);
   const [description, setDescription] = useState(entry.description);
   const [category, setCategory] = useState(entry.category);
+  const [socialLink, setSocialLink] = useState(entry.socialLink);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 
   // Modal visibility handlers
@@ -43,6 +44,7 @@ export default function EntryModal({ entry, type, user }) {
     setLink(entry.link);
     setDescription(entry.description);
     setCategory(entry.category);
+    setSocialLink(entry.socialLink);
   };
 
   const handleClose = () => {
@@ -60,8 +62,9 @@ export default function EntryModal({ entry, type, user }) {
       name: name,
       link: link,
       description: description,
-      user: user?.displayName ? user?.displayName : "GenericUser",
       category: category,
+      socialLink: socialLink,
+      user: user?.displayName ? user?.displayName : "GenericUser",
       userid: user?.uid,
     };
 
@@ -74,8 +77,9 @@ export default function EntryModal({ entry, type, user }) {
       name: name,
       link: link,
       description: description,
-      user: user?.displayName || "GenericUser",
       category: category,
+      socialLink: socialLink,
+      user: user?.displayName || "GenericUser",
       userid: user?.uid,
       id: entry.id,
     };
@@ -195,6 +199,17 @@ export default function EntryModal({ entry, type, user }) {
               ))}
             </Select>
           </FormControl>
+
+          <TextField
+            margin="normal"
+            id="socialLink"
+            label="Social Link"
+            placeholder="Facebook, twitter, and instagram are supported"
+            fullWidth
+            variant="standard"
+            value={socialLink}
+            onChange={(event) => setSocialLink(event.target.value)}
+          />
         </DialogContent>
         {actionButtons}
       </Dialog>

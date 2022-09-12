@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import EntryModal from "./EntryModal";
+import SocialModal from "./SocialModal";
 import { getCategory } from "../utils/categories";
 
 // Table component that displays entries on home screen
@@ -21,6 +22,7 @@ export default function EntryTable({ entries }) {
             <TableCell align="right">Link</TableCell>
             <TableCell align="right">User</TableCell>
             <TableCell align="right">Category</TableCell>
+            <TableCell align="right">Social Media</TableCell>
             <TableCell align="right">Open</TableCell>
           </TableRow>
         </TableHead>
@@ -39,6 +41,11 @@ export default function EntryTable({ entries }) {
               <TableCell align="right">{entry.user}</TableCell>
               <TableCell align="right">
                 {getCategory(entry.category).name}
+              </TableCell>
+              <TableCell align="right">
+                {entry.socialLink && entry.socialLink.length && (
+                  <SocialModal link={entry.socialLink} />
+                )}
               </TableCell>
               <TableCell
                 sx={{ "padding-top": 0, "padding-bottom": 0 }}
